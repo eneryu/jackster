@@ -14,11 +14,11 @@
 
 ## 💻 التقنيات المستخدمة
 
-- [Next.js 14](https://nextjs.org/) - فريمورك React
+- [Next.js 15.1.11](https://nextjs.org/) - فريمورك React
 - [TypeScript](https://www.typescriptlang.org/) - لغة البرمجة
 - [Tailwind CSS](https://tailwindcss.com/) - تنسيق وتصميم
 - [Prisma](https://www.prisma.io/) - قاعدة البيانات
-- [NextAuth.js](https://next-auth.js.org/) - نظام تسجيل الدخول
+- [JWT](https://jwt.io/) - نظام تسجيل الدخول والمصادقة
 - [Radix UI](https://www.radix-ui.com/) - مكونات واجهة المستخدم
 - [Framer Motion](https://www.framer.com/motion/) - الحركة والأنيميشن
 
@@ -26,13 +26,13 @@
 
 1. نسخ المشروع:
 \`\`\`bash
-git clone https://github.com/yourusername/jackster.git
+git clone https://github.com/eneryu/jackster.git
 cd jackster
 \`\`\`
 
 2. تثبيت المكتبات:
 \`\`\`bash
-npm install
+pnpm install
 \`\`\`
 
 3. إعداد ملف البيئة:
@@ -40,10 +40,31 @@ npm install
 cp .env.example .env.local
 \`\`\`
 
-4. تشغيل المشروع:
+4. توليد Prisma Client:
 \`\`\`bash
-npm run dev
+pnpm exec prisma generate
 \`\`\`
+
+5. تشغيل المشروع:
+\`\`\`bash
+pnpm dev
+\`\`\`
+
+## 🚀 النشر على Vercel
+
+1. ادفع الكود على GitHub
+2. اربط المشروع بـ Vercel
+3. أضف المتغيرات البيئية في Vercel:
+   - `DATABASE_URL` - رابط قاعدة البيانات (PostgreSQL للإنتاج)
+   - `JWT_SECRET` - مفتاح سري لـ JWT
+   - `NEXT_PUBLIC_APP_URL` - رابط الموقع
+
+4. Vercel سيقوم بالبناء تلقائياً عند كل push
+
+### ملاحظات مهمة للنشر:
+- استخدم PostgreSQL بدلاً من SQLite في الإنتاج
+- غيّر `provider = "sqlite"` إلى `provider = "postgresql"` في `prisma/schema.prisma`
+- قم بتشغيل `prisma migrate deploy` بعد النشر
 
 ## 📝 المساهمة
 
